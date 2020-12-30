@@ -3,49 +3,37 @@ package servlet;
 import bean.UserBean;
 import dao.DAOFactorySQL;
 import form.ConnexionForm;
+import form.EnregistrementForm;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/** @author - Maxime Choné **/
+public class RegisterServlet extends HttpServlet {
 
-public class LoginServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        ConnexionForm connexionForm = new ConnexionForm(DAOFactorySQL.getInstance().getUserDAO());
-        connexionForm.connectUser(request);
-
-        UserBean current_user = (UserBean)request.getSession().getAttribute("current_user");
+        EnregistrementForm enregistrementForm= new EnregistrementForm(DAOFactorySQL.getInstance().getUserDAO());
+        enregistrementForm.creerCompteUtilisateur(request);
 
         String path;
-        if(current_user != null){
-            path = "/index";
+        if(enregistrementForm.getResultat().equals("Enregistrement réussi !")){
+            path = "/login";
         } else {
-            path = "/login.jsp";
+            path = "/register.jsp";
         }
         request.getRequestDispatcher(path).forward(request,response);
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-
-        UserBean current_user = (UserBean)request.getSession().getAttribute("current_user");
-
-        String path;
-        if(current_user != null){
-            path = "/index";
-        } else {
-            path = "/login.jsp";
-        }
+        String path = "/register.jsp";
         request.getRequestDispatcher(path).forward(request,response);
     }
 }

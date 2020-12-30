@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/** @author - Maxime Choné **/
+
 public class ConnexionForm {
 
     private static final String CHAMP_EMAIL = "email";
@@ -36,7 +38,7 @@ public class ConnexionForm {
         if(erreurs.isEmpty()){
             UserBean current_user = userDAOo.load(email);
             request.getSession().setAttribute("current_user",current_user);
-            request.getSession().setAttribute("erreur_login",null);
+            request.setAttribute("erreur_login",null);
             resultat = "Connexion réussie !";
         } else {
             resultat = "La connexion a échouée!";

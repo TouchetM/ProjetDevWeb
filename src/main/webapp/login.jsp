@@ -49,21 +49,26 @@
                                             <input type="email" class="form-control form-control-user"
                                                 name="email" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
-                                            <%
-                                                @SuppressWarnings("unchecked")
-                                                Map<String,String> erreurs_login = (Map<String,String>)request.getAttribute("erreur_login");
+                                            <h6 class="h6 alert-danger">
 
-                                                if(erreurs_login != null){
-                                                    String email = "email";
-                                                    String erreur = erreurs_login.get(email);
-                                                    if(erreur != null)
-                                                    out.print(erreur);
-                                                }
-                                            %>
+                                                <%
+                                                    @SuppressWarnings("unchecked")
+                                                    Map<String,String> erreurs_login = (Map<String,String>)request.getAttribute("erreur_login");
+
+                                                    if(erreurs_login != null){
+                                                        String email = "email";
+                                                        String erreur = erreurs_login.get(email);
+                                                        if(erreur != null)
+                                                        out.print(erreur);
+                                                    }
+                                                %>
+                                            </h6>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
                                                  name="password" placeholder="Password">
+                                            <h6 class="h6 alert-danger">
+
                                             <%
                                                 if(erreurs_login != null){
                                                     String password = "password";
@@ -72,10 +77,12 @@
                                                         out.print(erreur);
                                                 }
                                             %>
+                                            </h6>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
+                                        <h6 class="h6 alert-danger">
                                         <%
                                             if(erreurs_login != null){
                                                 String match = "match";
@@ -84,10 +91,11 @@
                                                     out.print(erreur);
                                             }
                                         %>
+                                        </h6>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="register.jsp">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

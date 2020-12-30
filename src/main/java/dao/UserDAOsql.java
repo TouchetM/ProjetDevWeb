@@ -65,7 +65,6 @@ public class UserDAOsql implements UserDAO{
             throwables.printStackTrace();
         }
 
-        System.out.println("Connexion matching: "+matching);
         return matching;
     }
 
@@ -120,8 +119,31 @@ public class UserDAOsql implements UserDAO{
         }
     }
 
+
+
     @Override
     public void saveModification(String mail, UserBean user) {
 
+    }
+
+    @Override
+    public boolean exist(String mail) {
+        PreparedStatement pst = null;
+        boolean exist = false;
+        try {
+            String sql = "SELECT mail FROM USER where mail=?";
+            pst = factory.getConnexion().prepareStatement(sql);
+            pst.setString(1,mail);
+
+            ResultSet result = pst.executeQuery();
+
+            if(result.next())
+                exist = true;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return exist;
     }
 }
