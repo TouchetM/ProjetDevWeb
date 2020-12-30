@@ -1,4 +1,5 @@
 <%@ page import="bean.UserBean" %>
+<%@ page import="htmlWriter.htmlWriterNavBar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>CoP - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,10 +36,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Covid ou pas</div>
             </a>
 
             <!-- Divider -->
@@ -211,7 +209,7 @@
                         </li>
 
                         <%
-                            out.print(htmlWriter.htmlWriter.getUserInformationItem(request));
+                            out.print(htmlWriterNavBar.getUserInformationItem(request));
                         %>
 
                     </ul>
@@ -575,7 +573,7 @@
     </a>
 
     <%
-        out.print(htmlWriter.htmlWriter.getLogoutModal());
+        out.print(htmlWriterNavBar.getLogoutModal());
     %>
 
     <!-- Bootstrap core JavaScript-->

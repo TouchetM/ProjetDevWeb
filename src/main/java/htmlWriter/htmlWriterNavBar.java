@@ -4,7 +4,7 @@ import bean.UserBean;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class htmlWriter {
+public class htmlWriterNavBar {
 
     public static String getUserInformationItem(HttpServletRequest request) {
         UserBean current_user = (UserBean) request.getSession().getAttribute("current_user");
@@ -100,7 +100,16 @@ public class htmlWriter {
                     "                            </div>" +
                     "                        </li>";
 
+
             retour = notifHTML + userHTML;
+        } else {
+            String connexionEtEnregitrement =
+                    "" +
+                    "                        <!-- Nav Item - User Information -->" +
+                    "                         <a href=\"login\" class=\"mr-2 d-none d-lg-inline text-gray-600 btn btn-light btn-sm\">Se connecter</a>" +
+                "                                <div class=\"topbar-divider d-none d-sm-block\"></div>" +
+                    "                         <a href=\"register\" class=\"mr-2 d-none d-lg-inline text-gray-600 btn btn-light btn-sm\">S'inscrire</a>";
+            retour = connexionEtEnregitrement;
         }
         return retour;
     }
