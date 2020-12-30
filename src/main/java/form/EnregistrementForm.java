@@ -34,7 +34,7 @@ public class EnregistrementForm {
         String confirmation = getValeurChamp(request, CHAMP_CONF);
         String name = getValeurChamp(request, CHAMP_NAME);
         String firstname = getValeurChamp(request,CHAMP_FISTNAME);
-//        String birthdate = getValeurChamp(request,"birthdate");
+        String birthdate = getValeurChamp(request,CHAMP_BIRTH);
 
         traiterEmail(email);
         traiterPassword(password,confirmation);
@@ -47,6 +47,10 @@ public class EnregistrementForm {
             user.setLastName(name);
             user.setFirstName(firstname);
             user.setPassword(password);
+            System.out.println(birthdate);
+            if(birthdate == null)
+                birthdate = "";
+            user.setBirthdate(birthdate);
 
             userDAOo.save(user);
             resultat = "Enregistrement réussi !";
@@ -95,7 +99,6 @@ public class EnregistrementForm {
                 throw new FormValidationException("Merci de saisir un prénom.");
             }
         }
-
     }
 
 

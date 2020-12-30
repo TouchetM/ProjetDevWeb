@@ -9,6 +9,7 @@ public class UserBean {
     private String password;
     private String firstName = "";
     private String lastName = "";
+    private String birthdate = "";
     private String role = "basic_user";
 
     public UserBean(){
@@ -62,6 +63,13 @@ public class UserBean {
         return lastName;
     }
 
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
 
     @Override
     public String toString() {

@@ -70,7 +70,6 @@
                                         placeholder="Email Address">
                                 </div>
                                 <h6 class="h6 alert-danger">
-
                                     <%
                                             if(erreurs_register != null){
                                                 String email = "email";
@@ -80,6 +79,7 @@
                                             }
                                     %>
                                 </h6>
+
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user" name="password" placeholder="Password">
@@ -90,7 +90,6 @@
                                     </div>
                                 </div>
                                 <h6 class="h6 alert-danger">
-
                                     <%
                                         if(erreurs_register != null){
                                             String password = "password";
@@ -100,9 +99,16 @@
                                         }
                                     %>
                                 </h6>
+
+                                <div class="form-group">
+                                    <input type="date" class="form-control form-control-user" name="birthdate"
+                                    >
+                                </div>
+
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Register Account
                                 </button>
+
                             </form>
                             <hr>
                             <div class="text-center">

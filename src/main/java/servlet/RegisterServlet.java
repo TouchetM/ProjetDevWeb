@@ -1,16 +1,15 @@
 package servlet;
 
-import bean.UserBean;
-import dao.DAOFactorySQL;
-import form.ConnexionForm;
+import dao.sql.DAOFactorySQL;
 import form.EnregistrementForm;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
+/** @author - Maxime Choné **/
 
 public class RegisterServlet extends HttpServlet {
 

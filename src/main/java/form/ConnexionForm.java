@@ -1,7 +1,6 @@
 package form;
 
 import bean.UserBean;
-import dao.DAOFactorySQL;
 import dao.UserDAO;
 
 import javax.servlet.http.HttpServletRequest;

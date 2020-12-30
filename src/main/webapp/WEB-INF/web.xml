@@ -44,6 +44,16 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>createAndInitTablesServlet</servlet-name>
+        <servlet-class>servlet.createAndInitTablesServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createAndInitTablesServlet</servlet-name>
+        <url-pattern>/createAndInitTables</url-pattern>
+    </servlet-mapping>
+
     <default-context-path>
         JSP_pages/index.jsp
     </default-context-path>
