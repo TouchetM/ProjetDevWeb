@@ -28,7 +28,7 @@ public class ActivityBean {
 
     @Override
     public String toString() {
-        return "ActiviryBean{" +
+        return "ActivityBean{" +
                 "id=" + id +
                 ", id_user='" + id_user + '\'' +
                 ", id_location='" + id_location + '\'' +

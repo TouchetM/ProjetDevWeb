@@ -7,6 +7,7 @@
 --%>
 <%@ page import="htmlWriter.htmlWriterNavBar" %>
 <%@ page import="htmlWriter.htmlWriterFriend" %>
+<%@ page import="htmlWriter.htmlWriterLocation" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -243,10 +244,41 @@
                             <div class="collapse show" id="collapseCardLocation">
                                 <div class="card-body">
                                     <%
-                                        out.print(htmlWriterFriend.getFriendRequesting(request));
+                                        out.print(htmlWriterLocation.getLocations(request));
                                     %>
                                 </div>
                             </div>
+                        </div>
+                        <!-- Ajouter une activité -->
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Accordion -->
+                            <a href="#collapseCardActivity" class="d-block card-header py-3" data-toggle="collapse"
+                               role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                                <h6 class="m-0 font-weight-bold text-warning">Ajouter une activité</h6>
+                            </a>
+                            <form method="post" action="addActivity" class="navbar-search">
+                                <div class="input-group">
+                                    <div class="form-group">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Nom de l'activité"
+                                           aria-label="Search" aria-describedby="basic-addon2" name="name"> </div>
+                                    <div class="form-group">
+                                    <input type="date" class="form-control bg-light border-0 small" placeholder="Date"
+                                           aria-label="Search" aria-describedby="basic-addon2" name="date"> </div>
+                                    <div class="form-group">
+                                    <input type="time" class="form-control bg-light border-0 small" placeholder="Heure de début"
+                                           aria-label="Search" aria-describedby="basic-addon2" name="start_at"> </div>
+                                    <div class="form-group">
+                                    <input type="time" class="form-control bg-light border-0 small" placeholder="Heure de fin"
+                                           aria-label="Search" aria-describedby="basic-addon2" name="end_at"> </div>
+                                    <div class="form-group">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Ajouter l'activité
+                                        </button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
@@ -262,11 +294,13 @@
                             <!-- Card Content - Collapse -->
                             <div class="collapse show" id="collapseCardNewLocation">
                                 <div class="card-body">
-                                    <!-- Input for friend request -->
-                                    <form method="post" action="demandeAmi" class="navbar-search">
+                                    <!-- Input for new location -->
+                                    <form method="post" action="addLocation" class="navbar-search">
                                         <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Email de l'utilisateur à inviter"
-                                                   aria-label="Search" aria-describedby="basic-addon2" name="email">
+                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Nom du lieu"
+                                                   aria-label="Search" aria-describedby="basic-addon2" name="name">
+                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Adresse du lieu"
+                                                   aria-label="Search" aria-describedby="basic-addon2" name="address">
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-success" type="button">
                                                     <i class="fas fa-plus fa-sm"></i>

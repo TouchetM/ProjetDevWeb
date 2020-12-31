@@ -1,8 +1,6 @@
 package dao.sql;
 
 import bean.ActivityBean;
-import bean.FriendBean;
-import bean.UserBean;
 import dao.ActivityDAO;
 
 import java.sql.PreparedStatement;

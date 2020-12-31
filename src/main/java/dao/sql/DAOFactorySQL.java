@@ -2,6 +2,7 @@ package dao.sql;
 
 import dao.ActivityDAO;
 import dao.FriendDAO;
+import dao.LocationDAO;
 import dao.UserDAO;
 
 import java.io.BufferedReader;
@@ -119,5 +120,7 @@ public class DAOFactorySQL {
     }
 
     public ActivityDAO getActivityDAO(){return new ActivityDAOsql(this);}
+
+    public LocationDAO getLocationDAO(){return new LocationDAOsql(this);}
 
 }
