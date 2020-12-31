@@ -21,7 +21,7 @@ public class htmlWriterFriend {
                 String mail = userBean.getMail();
                 String name = userBean.getLastName();
                 String firstname = userBean.getFirstName();
-
+                int id = userBean.getId();
                 String friend = "<!-- Earnings (Monthly) Card Example -->" +
                         "                                        <div class=\"mb-2\">" +
                         "                                            <div class=\"card border-left-primary shadow h-100 py-2\">" +
@@ -33,7 +33,12 @@ public class htmlWriterFriend {
                         "                                                            <div class=\"h5 mb-0 font-weight-bold text-gray-800\">" + firstname + " " + name + "</div>" +
                         "                                                        </div>" +
                         "                                                        <div class=\"col-auto\">" +
-                        "                                                            <i class=\"fas fa-calendar fa-2x text-gray-300\"></i>" +
+                        "                                                           <form id=\"formDeleteAmi"+ id+"\" name=\"formDemandeAmi"+ id +"\" method=\"post\" action=\"deleteFriend\">" +
+                        "                                                               <input type=\"hidden\" name=\"id_user_to_delete\" value=\""+id+"\" />" +
+                        "                                                               <button type=\"submit\" class=\"btn btn-primary\" type=\"button\">"+
+                        "                                                                   <i class=\"fas fa-minus fa-sm\"></i>"+
+                        "                                                               </button>" +
+                        "                                                           </form>" +
                         "                                                        </div>" +
                         "                                                    </div>" +
                         "                                                </div>" +
@@ -64,6 +69,8 @@ public class htmlWriterFriend {
                 String name = userBean.getLastName();
                 String firstname = userBean.getFirstName();
 
+                int id = userBean.getId();
+
                 String friend = "<!-- Earnings (Monthly) Card Example -->" +
                         "                                        <div class=\"mb-2\">" +
                         "                                            <div class=\"card border-left-danger shadow h-100 py-2\">" +
@@ -75,8 +82,13 @@ public class htmlWriterFriend {
                         "                                                            <div class=\"h5 mb-0 font-weight-bold text-gray-800\">" + firstname + " " + name + "</div>" +
                         "                                                        </div>" +
                         "                                                        <div class=\"col-auto\">" +
-                        "                                                            <i class=\"fas fa-calendar fa-2x text-gray-300\"></i>" +
-                        "                                                        </div>" +
+                        "                                                           <form id=\"formCancelFriendRequest"+ id+"\" method=\"post\" action=\"cancelFriendRequest\">" +
+                        "                                                               <input type=\"hidden\" name=\"id_user_to_cancel\" value=\""+id+"\" />" +
+                        "                                                               <button type=\"submit\" class=\"btn btn-danger\" type=\"button\">"+
+                        "                                                                   <i class=\"fas fa-times fa-sm\"></i>" +
+                        "                                                               </button>" +
+                        "                                                           </form>" +
+                        "                                                         </div>" +
                         "                                                    </div>" +
                         "                                                </div>" +
                         "                                            </div>" +
@@ -105,6 +117,7 @@ public class htmlWriterFriend {
                 String mail = userBean.getMail();
                 String name = userBean.getLastName();
                 String firstname = userBean.getFirstName();
+                int id = userBean.getId();
 
                 String friend = "<!-- Earnings (Monthly) Card Example -->" +
                         "                                        <div class=\"mb-2\">" +
@@ -116,9 +129,24 @@ public class htmlWriterFriend {
                         "                                                                " + mail + "</div>" +
                         "                                                            <div class=\"h5 mb-0 font-weight-bold text-gray-800\">" + firstname + " " + name + "</div>" +
                         "                                                        </div>" +
-                        "                                                        <div class=\"col-auto\">" +
-                        "                                                            <i class=\"fas fa-calendar fa-2x text-gray-300\"></i>" +
-                        "                                                        </div>" +
+                        "                                                           <div class=\"btn-toolbar\" role=\"toolbar\" aria-label=\"Toolbar with button groups\"> " +
+                        "                                                           <div class=\"col-auto\">" +
+                        "                                                               <form id=\"formAcceptFriendRequest"+ id+"\" method=\"post\" action=\"acceptFriendRequest\">" +
+                        "                                                                   <input type=\"hidden\" name=\"id_user_to_accept\" value=\""+id+"\" />" +
+                        "                                                                   <button type=\"submit\" class=\"btn btn-warning\" type=\"button\">"+
+                        "                                                                      <i class=\"fas fa-check fa-sm\"></i>" +
+                        "                                                                   </button>" +
+                        "                                                               </form>" +
+                        "                                                           </div>" +
+                        "                                                           <div class=\"col-auto\">" +
+                        "                                                               <form id=\"formRefuseFriendRequest"+ id+"\" method=\"post\" action=\"refuseFriendRequest\">" +
+                        "                                                                   <input type=\"hidden\" name=\"id_user_to_refuse\" value=\""+id+"\" />" +
+                        "                                                                   <button type=\"submit\" class=\"btn btn-warning\" type=\"button\">"+
+                        "                                                                       <i class=\"fas fa-times fa-sm\"></i>" +
+                        "                                                                   </button>" +
+                        "                                                               </form>" +
+                        "                                                           </div>" +
+                        "                                                           </div>"+
                         "                                                    </div>" +
                         "                                                </div>" +
                         "                                            </div>" +

@@ -17,6 +17,7 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+        request.setCharacterEncoding("UTF-8");
 
         EnregistrementForm enregistrementForm= new EnregistrementForm(DAOFactorySQL.getInstance().getUserDAO());
         enregistrementForm.creerCompteUtilisateur(request);

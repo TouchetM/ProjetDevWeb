@@ -47,7 +47,6 @@ public class EnregistrementForm {
             user.setLastName(name);
             user.setFirstName(firstname);
             user.setPassword(password);
-            System.out.println(birthdate);
             if(birthdate == null)
                 birthdate = "";
             user.setBirthdate(birthdate);

@@ -42,19 +42,15 @@ public class DAOFactorySQL {
 
         InputStream x = getClass().getResourceAsStream("/" + nomFichier);
         try {
-            System.out.println("allo1");
 
             if (x != null)
                 fr = new BufferedReader(new InputStreamReader(x)); // Permet de lire le fichier
             else
                 throw new IOException("Impossible de lire le fichier, le fichier n'existe pas. " + "\"/" + nomFichier + "\"");
 
-            System.out.println("allo2");
-
             String line;
             StringBuilder fileContent = new StringBuilder("");
             while ((line = fr.readLine()) != null){
-                System.out.println(line);
                 fileContent.append(line);
             }
 
@@ -65,7 +61,6 @@ public class DAOFactorySQL {
                 Statement st = connexion.createStatement();
 
                 for (int i = 0; i < request.length; i++) {
-                    System.out.println("Executed queries "+i+": "+request[i]);
                     if(!request[i].equals(""))
                     st.executeUpdate(request[i]);
                 }
