@@ -104,10 +104,9 @@ public class htmlWriterNavBar {
             retour = notifHTML + userHTML;
         } else {
             String connexionEtEnregitrement =
-                    "" +
                     "                        <!-- Nav Item - User Information -->" +
                     "                         <a href=\"login\" class=\"mr-2 d-none d-lg-inline text-gray-600 btn btn-light btn-sm\">Se connecter</a>" +
-                "                                <div class=\"topbar-divider d-none d-sm-block\"></div>" +
+                    "                                <div class=\"topbar-divider d-none d-sm-block\"></div>" +
                     "                         <a href=\"register\" class=\"mr-2 d-none d-lg-inline text-gray-600 btn btn-light btn-sm\">S'inscrire</a>";
             retour = connexionEtEnregitrement;
         }

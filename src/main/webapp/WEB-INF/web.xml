@@ -54,6 +54,16 @@
         <url-pattern>/createAndInitTables</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>DemandeAmiServlet</servlet-name>
+        <servlet-class>servlet.DemandeAmiServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DemandeAmiServlet</servlet-name>
+        <url-pattern>/demandeAmi</url-pattern>
+    </servlet-mapping>
+
     <default-context-path>
         JSP_pages/index.jsp
     </default-context-path>

@@ -185,41 +185,42 @@ public class UserDAOsql implements UserDAO {
         ArrayList<UserBean> friendList = new ArrayList<>();
 
         try {
-            String sql ="SELECT * from user where " +
-                    "user.id = ( SELECT id_user_1 from friend where " +
-                    "friend.id_user_2 = ? and request_state = 'accepted') " +
-                    "or " +
-                    "user.id = ( SELECT id_user_2 from friend where " +
-                    "friend.id_user_1 = ? and request_state = 'accepted');";
+            String sql ="SELECT id_user_1 from friend where " +
+                    "friend.id_user_2 = ? and request_state = 'accepted'";
+            String sql2 = "SELECT id_user_2 from friend where " +
+                    "friend.id_user_1 = ? and request_state = 'accepted';";
+
+
             PreparedStatement pst = factory.getConnexion().prepareStatement(sql);
+            PreparedStatement pst2 = factory.getConnexion().prepareStatement(sql2);
 
             pst.setInt(1,user.getId());
-            pst.setInt(2,user.getId());
+            pst2.setInt(1,user.getId());
 
             ResultSet result = pst.executeQuery();
-
             UserBean friend = null;
             while (result.next()){
-                friend = new UserBean();
-                friend.setId(result.getInt("id"));
-                friend.setRole(result.getString("role"));
-                friend.setMail(result.getString("mail"));
-                friend.setPassword(result.getString("password"));
-                friend.setFirstName(result.getString("firstname"));
-                friend.setLastName(result.getString("lastname"));
-                friend.setBirthdate(result.getString("birthdate"));
+                friend = load(result.getInt("id_user_1"));
+                System.out.println(friend);
                 friendList.add(friend);
-
             }
             result.close();
+
+
+            ResultSet result2 = pst2.executeQuery();
+            UserBean friend2 = null;
+            while (result2.next()){
+                friend2 = load(result2.getInt("id_user_2"));
+                System.out.println(friend2);
+                friendList.add(friend2);
+            }
+            result2.close();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        UserBean[] users = friendList.toArray(new UserBean[0]);
-
-        return users;
+        return friendList.toArray(new UserBean[0]);
     }
 
     @Override
@@ -227,9 +228,8 @@ public class UserDAOsql implements UserDAO {
         ArrayList<UserBean> friendRequestedList = new ArrayList<>();
 
         try {
-            String sql ="SELECT * from user where " +
-                    "user.id = ( SELECT id_user_2 from friend where " +
-                    "friend.id_user_1 = ? and request_state = 'pending')";
+            String sql ="SELECT id_user_2 from friend where " +
+                    "friend.id_user_1 = ? and request_state = 'pending'";
             PreparedStatement pst = factory.getConnexion().prepareStatement(sql);
 
             pst.setInt(1,user.getId());
@@ -238,16 +238,8 @@ public class UserDAOsql implements UserDAO {
 
             UserBean requested = null;
             while (result.next()){
-                requested = new UserBean();
-                requested.setId(result.getInt("id"));
-                requested.setRole(result.getString("role"));
-                requested.setMail(result.getString("mail"));
-                requested.setPassword(result.getString("password"));
-                requested.setFirstName(result.getString("firstname"));
-                requested.setLastName(result.getString("lastname"));
-                requested.setBirthdate(result.getString("birthdate"));
+                requested = load(result.getInt("id_user_2"));
                 friendRequestedList.add(requested);
-
             }
             result.close();
 
@@ -265,9 +257,8 @@ public class UserDAOsql implements UserDAO {
         ArrayList<UserBean> friendRequestingList = new ArrayList<>();
 
         try {
-            String sql ="SELECT * from user where " +
-                    "user.id = ( SELECT id_user_1 from friend where " +
-                    "friend.id_user_2 = ? and request_state = 'pending') ";
+            String sql ="SELECT id_user_1 from friend where " +
+                    "friend.id_user_2 = ? and request_state = 'pending'";
             PreparedStatement pst = factory.getConnexion().prepareStatement(sql);
 
             pst.setInt(1,user.getId());
@@ -276,16 +267,8 @@ public class UserDAOsql implements UserDAO {
 
             UserBean userWhoIsRequesting = null;
             while (result.next()){
-                userWhoIsRequesting = new UserBean();
-                userWhoIsRequesting.setId(result.getInt("id"));
-                userWhoIsRequesting.setRole(result.getString("role"));
-                userWhoIsRequesting.setMail(result.getString("mail"));
-                userWhoIsRequesting.setPassword(result.getString("password"));
-                userWhoIsRequesting.setFirstName(result.getString("firstname"));
-                userWhoIsRequesting.setLastName(result.getString("lastname"));
-                userWhoIsRequesting.setBirthdate(result.getString("birthdate"));
+                userWhoIsRequesting = load(result.getInt("id_user_2"));
                 friendRequestingList.add(userWhoIsRequesting);
-
             }
             result.close();
 

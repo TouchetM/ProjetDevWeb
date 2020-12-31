@@ -1,47 +1,36 @@
 package servlet;
 
-import bean.FriendBean;
 import bean.UserBean;
 import dao.sql.DAOFactorySQL;
+import form.ConnexionForm;
+import form.DemandeAmiForm;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Arrays;
 
-/** @author - Maxime Choné **/
-
-public class LogoutServlet extends HttpServlet {
+public class DemandeAmiServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        HttpSession session = request.getSession();
+        UserBean current_user = (UserBean)request.getSession().getAttribute("current_user");
+        String path = "/friends.jsp";
 
+        if(current_user != null) {
 
+            DemandeAmiForm demandeAmiForm = new DemandeAmiForm(DAOFactorySQL.getInstance().getUserDAO(), DAOFactorySQL.getInstance().getFriendRequestDAO());
+            demandeAmiForm.envoyerDemandeAmi(request);
 
-        session.setAttribute("current_user",null);
+        }
 
-        String path;
-        path = "/index";
         request.getRequestDispatcher(path).forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-
-        HttpSession session = request.getSession();
-
-//      System.out.println(Arrays.toString(DAOFactorySQL.getInstance().getUserDAO().friendRequesting((UserBean) session.getAttribute("current_user"))));
-
-        session.setAttribute("current_user",null);
-
-        String path;
-        path = "/index";
-        request.getRequestDispatcher(path).forward(request,response);
 
     }
 }
