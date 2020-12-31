@@ -1,5 +1,6 @@
 package dao.sql;
 
+import dao.ActivityDAO;
 import dao.FriendDAO;
 import dao.UserDAO;
 
@@ -116,5 +117,7 @@ public class DAOFactorySQL {
         return new FriendDAOsql(this);
 
     }
+
+    public ActivityDAO getActivityDAO(){return new ActivityDAOsql(this);}
 
 }

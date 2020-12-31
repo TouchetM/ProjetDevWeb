@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS FRIEND;
 DROP TABLE IF EXISTS USER;
+DROP TABLE IF EXISTS ACTIVITY;
 
 CREATE TABLE `user` (
   `id` int(6) NOT NULL,
@@ -33,3 +34,34 @@ ALTER TABLE `friend`
   ADD CONSTRAINT `FK2` FOREIGN KEY (`id_user_2`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 INSERT INTO `friend` (`id_user_1`, `id_user_2`) VALUES
 (1, 2);
+
+CREATE TABLE `location` (
+    `id` int(8) NOT NULL,
+    `name` varchar(1024) DEFAULT NULL,
+    `address` varchar(1024) NOT NULL
+);
+ALTER TABLE `location`
+    ADD PRIMARY KEY (`id`, `address`);
+INSERT INTO `id` (`id`,`name`,`address`) VALUES
+(1,'location1','address1');
+INSERT INTO `id` (`id`,`name`,`address`) VALUES
+(2,'location2','address2');
+
+CREATE TABLE `activity` (
+    `id` int(8) NOT NULL,
+    `id_user_FK` int(8) NOT NULL,
+    `id_location` int(8) NOT NULL,
+    `name` varchar(1024) DEFAULT NULL,
+    `date` date DEFAULT NULL,
+    `start_at` time DEFAULT NULL,
+    `end_at` time DEFAULT NULL
+);
+ALTER TABLE `activity`
+    ADD PRIMARY KEY (`id`,`id_user_FK`,`id_location`);
+ALTER TABLE `activity`
+    ADD CONSTRAINT FOREIGN KEY ('id_user_FK') REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE.
+    ADD CONSTRAINT FOREIGN KEY ('id_location') REFERENCES `location` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+INSERT INTO `activity` (`id`,`id_user_FK`,`id_location`,`name`,`date`,`start_at`,`end_at`) VALUES
+            (1,1,2,'activity1','2020-12-30','16:35:12','18:12:04');
+INSERT INTO `activity` (`id`,`id_user_FK`,`id_location`,`name`,`date`,`start_at`,`end_at`) VALUES
+            (2,2,1,'activity2','2020-12-05','06:35:12','20:12:04');
