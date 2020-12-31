@@ -256,7 +256,7 @@
                                role="button" aria-expanded="true" aria-controls="collapseCardExample">
                                 <h6 class="m-0 font-weight-bold text-warning">Ajouter une activité</h6>
                             </a>
-                            <form method="post" action="addActivity" class="navbar-search">
+                            <form method="post" action="newActivity.jsp" class="navbar-search">
                                 <div class="input-group">
                                     <div class="form-group">
                                     <input type="text" class="form-control bg-light border-0 small" placeholder="Nom de l'activité"

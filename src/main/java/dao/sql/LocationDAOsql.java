@@ -70,16 +70,15 @@ public class LocationDAOsql implements LocationDAO {
     }
 
     @Override
-    public boolean exist(int id, String name, String address){
-        String sql = "SELECT * FROM location where (id = ? and 'name' = ? and address = ?)";
+    public boolean exist(String name, String address){
+        String sql = "SELECT * FROM location where ('name' = ? and address = ?)";
         PreparedStatement pst = null;
         boolean exist = false;
         try {
             pst = factory.getConnexion().prepareStatement(sql);
 
-            pst.setInt(1,id);
-            pst.setString(2,name);
-            pst.setString(3,address);
+            pst.setString(1,name);
+            pst.setString(2,address);
 
             ResultSet result = pst.executeQuery();
 
@@ -96,7 +95,7 @@ public class LocationDAOsql implements LocationDAO {
 
     @Override
     public void createLocation(LocationBean newLocation){
-        if(!exist(newLocation.getId(),newLocation.getName(),newLocation.getAddress()))
+        if(!exist(newLocation.getName(),newLocation.getAddress()))
             try {
                 String sql = "INSERT INTO LOCATION (id,name,address) VALUES (?,?,?)";
                 PreparedStatement pst = factory.getConnexion().prepareStatement(sql);

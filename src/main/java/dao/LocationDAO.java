@@ -7,5 +7,5 @@ public interface LocationDAO {
     LocationBean loadLocation(int id);
     LocationBean[] loadAll();
     void createLocation(LocationBean location);
-    boolean exist(int id, String name, String address);
+    boolean exist(String name, String address);
 }
