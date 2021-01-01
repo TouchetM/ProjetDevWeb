@@ -8,6 +8,7 @@
 <%@ page import="htmlWriter.htmlWriterNavBar" %>
 <%@ page import="htmlWriter.htmlWriterFriend" %>
 <%@ page import="htmlWriter.htmlWriterLocation" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -232,23 +233,6 @@
 
                     <!-- Left -->
                     <div class="col-lg-6">
-
-                        <!-- Choisir un lieu -->
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Accordion -->
-                            <a href="#collapseCardLocation" class="d-block card-header py-3" data-toggle="collapse"
-                               role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                                <h6 class="m-0 font-weight-bold text-warning">Choisir un lieu</h6>
-                            </a>
-                            <!-- Card Content - Collapse -->
-                            <div class="collapse show" id="collapseCardLocation">
-                                <div class="card-body">
-                                    <%
-                                        out.print(htmlWriterLocation.getLocations(request));
-                                    %>
-                                </div>
-                            </div>
-                        </div>
                         <!-- Ajouter une activité -->
                         <div class="card shadow mb-4">
                             <!-- Card Header - Accordion -->
@@ -258,6 +242,17 @@
                             </a>
                             <form method="post" action="newActivity.jsp" class="navbar-search">
                                 <div class="input-group">
+                                    <div class="form-group">
+                                        <%
+                                            ArrayList<String> locations = htmlWriterLocation.getLocationList(request);
+                                        %>
+                                    <select name="location" id="location_select">
+                                        <option value="">--Choisissez un lieu--</option>
+                                        <%for(int i=0; i< locations.size();i++){%>
+                                        <option><%out.print(locations.get(i));%></option>
+                                        <%}%>
+                                    </select>
+                                    </div>
                                     <div class="form-group">
                                     <input type="text" class="form-control bg-light border-0 small" placeholder="Nom de l'activité"
                                            aria-label="Search" aria-describedby="basic-addon2" name="name"> </div>

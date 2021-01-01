@@ -232,7 +232,7 @@
                     <!-- Left -->
                     <div class="col-lg-6">
 
-                        <!-- Choisir un lieu -->
+                        <!-- Afficher historique activités -->
                         <div class="card shadow mb-4">
                             <!-- Card Header - Accordion -->
                             <a href="#collapseCardActivities" class="d-block card-header py-3" data-toggle="collapse"
