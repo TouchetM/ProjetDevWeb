@@ -290,7 +290,7 @@
                                 <div class="collapse show" id="collapseCardNewFriendRequest">
                                     <div class="card-body">
                                         <!-- Input for friend request -->
-                                        <form method="post" action="demandeAmi" class="navbar-search">
+                                        <form method="post" action="createFriendRequest" class="navbar-search">
                                             <div class="input-group">
                                                 <input type="text" class="form-control bg-light border-0 small" placeholder="Email de l'utilisateur à inviter"
                                                        aria-label="Search" aria-describedby="basic-addon2" name="email">
@@ -300,6 +300,15 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            <h6 class="h6 alert-danger">
+                                            <%
+                                                String erreur_demandeAmi = (String) request.getAttribute("erreur_demandeAmi");
+
+                                                if(erreur_demandeAmi != null){
+                                                    out.print(erreur_demandeAmi);
+                                                }
+                                            %>
+                                            </h6>
                                         </form>
                                     </div>
                                 </div>

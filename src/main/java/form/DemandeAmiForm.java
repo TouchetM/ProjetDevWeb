@@ -24,39 +24,43 @@ public class DemandeAmiForm {
 
     public void envoyerDemandeAmi(HttpServletRequest request){
         String email = getValeurChamp(request,"email");
+        UserBean current_user = (UserBean) request.getSession().getAttribute("current_user");
 
-        traiterEmail(email);
+        traiterEmail(email,current_user);
 
         if(erreur == null){
-            UserBean current_user = (UserBean) request.getSession().getAttribute("current_user");
             UserBean userToInvite = userDAOo.load(email);
-
-            if(!friendDAO.exist(current_user.getId(),userToInvite.getId())){
-                FriendBean friendRequest = new FriendBean();
+             FriendBean friendRequest = new FriendBean();
                 friendRequest.setId_to(userToInvite.getId());
                 friendRequest.setId_from(current_user.getId());
                 friendDAO.createFriendRequest(friendRequest);
                 resultat = "Demande d'ami envoyée";
-                request.setAttribute("erreur_demande_ami",null);
-            }
+                request.setAttribute("erreur_demandeAmi",null);
+
         } else {
-            request.setAttribute("erreur_demande_ami",erreur);
+            request.setAttribute("erreur_demandeAmi",erreur);
             resultat = "échec de la création de la demande d'ami";
         }
     }
 
-    private void traiterEmail(String email){
+    private void traiterEmail(String email,UserBean current_user){
         try{
-            validationEmail(email);
+            validationEmail(email,current_user);
         } catch (FormValidationException e) {
             erreur = e.getMessage();
         }
     }
 
-    private void validationEmail(String email) throws FormValidationException {
+    private void validationEmail(String email,UserBean current_user) throws FormValidationException {
         if(email != null){
             if(!userDAOo.exist(email)){
                 throw new FormValidationException("L'utilisateur n'existe pas.");
+            } else {
+                if(friendDAO.exist(current_user.getId(),userDAOo.load(email).getId())){
+                    throw new FormValidationException("Vous êtes déjà en relation avec cet utilisateur.");
+                } else if (userDAOo.load(email).getId() == current_user.getId()){
+                    throw new FormValidationException("Vous êtes déjà ami avec vous même, au fond de votre cœur.");
+                }
             }
         } else {
             throw new FormValidationException("Merci de saisir une adresse mail.");

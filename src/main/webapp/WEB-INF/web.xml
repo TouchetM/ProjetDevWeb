@@ -55,23 +55,63 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>createAndInitTablesServlet</servlet-name>
-        <servlet-class>servlet.createAndInitTablesServlet</servlet-class>
+        <servlet-name>CreateAndInitTablesServlet</servlet-name>
+        <servlet-class>servlet.CreateAndInitTablesServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>createAndInitTablesServlet</servlet-name>
+        <servlet-name>CreateAndInitTablesServlet</servlet-name>
         <url-pattern>/createAndInitTables</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>DemandeAmiServlet</servlet-name>
-        <servlet-class>servlet.DemandeAmiServlet</servlet-class>
+        <servlet-name>CreateFriendRequestServlet</servlet-name>
+        <servlet-class>servlet.CreateFriendRequestServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>DemandeAmiServlet</servlet-name>
-        <url-pattern>/demandeAmi</url-pattern>
+        <servlet-name>CreateFriendRequestServlet</servlet-name>
+        <url-pattern>/createFriendRequest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteFriendServlet</servlet-name>
+        <servlet-class>servlet.DeleteFriendServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteFriendServlet</servlet-name>
+        <url-pattern>/deleteFriend</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AcceptFriendRequestServlet</servlet-name>
+        <servlet-class>servlet.AcceptFriendRequestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AcceptFriendRequestServlet</servlet-name>
+        <url-pattern>/acceptFriendRequest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CancelFriendRequestServlet</servlet-name>
+        <servlet-class>servlet.CancelFriendRequestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CancelFriendRequestServlet</servlet-name>
+        <url-pattern>/cancelFriendRequest</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RefuseFriendRequestServlet</servlet-name>
+        <servlet-class>servlet.RefuseFriendRequestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RefuseFriendRequestServlet</servlet-name>
+        <url-pattern>/refuseFriendRequest</url-pattern>
     </servlet-mapping>
 
     <default-context-path>

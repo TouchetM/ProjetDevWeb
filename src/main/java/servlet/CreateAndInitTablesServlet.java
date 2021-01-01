@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /** @author - Maxime Choné **/
 
-public class createAndInitTablesServlet extends HttpServlet {
+public class CreateAndInitTablesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 

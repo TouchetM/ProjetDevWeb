@@ -201,7 +201,6 @@ public class UserDAOsql implements UserDAO {
             UserBean friend = null;
             while (result.next()){
                 friend = load(result.getInt("id_user_1"));
-                System.out.println(friend);
                 friendList.add(friend);
             }
             result.close();
@@ -211,7 +210,6 @@ public class UserDAOsql implements UserDAO {
             UserBean friend2 = null;
             while (result2.next()){
                 friend2 = load(result2.getInt("id_user_2"));
-                System.out.println(friend2);
                 friendList.add(friend2);
             }
             result2.close();
@@ -267,7 +265,7 @@ public class UserDAOsql implements UserDAO {
 
             UserBean userWhoIsRequesting = null;
             while (result.next()){
-                userWhoIsRequesting = load(result.getInt("id_user_2"));
+                userWhoIsRequesting = load(result.getInt("id_user_1"));
                 friendRequestingList.add(userWhoIsRequesting);
             }
             result.close();
