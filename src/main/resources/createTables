@@ -65,3 +65,26 @@ INSERT INTO `activity` (`id`,`id_user_FK`,`id_location`,`name`,`date`,`start_at`
             (1,1,2,'activity1','2020-12-30','16:35:12','18:12:04');
 INSERT INTO `activity` (`id`,`id_user_FK`,`id_location`,`name`,`date`,`start_at`,`end_at`) VALUES
             (2,2,1,'activity2','2020-12-05','06:35:12','20:12:04');
+
+CREATE TABLE `notification` (
+    `id` int(8) NOT NULL,
+    `message` varchar(1024) DEFAULT NULL,
+    `check` boolean DEFAULT NULL
+);
+ALTER TABLE `notification`
+    ADD PRIMARY KEY (`id`);
+INSERT INTO `notification` (`id`,`message`,`check`) VALUES
+            (1,'notification1',false);
+INSERT INTO `notification` (`id`,`message`,`check`) VALUES
+            (2,'notification2',true);
+
+CREATE TABLE `user_notification` (
+    `id_user_FK` int(8) NOT NULL,
+    `id_notification_FK` int(8) NOT NULL
+);
+ALTER TABLE `user_notification`
+    ADD PRIMARY KEY (`id_user_FK`, `id_notification_FK`);
+INSERT INTO `user_notification` (`id_user_FK`, `id_notification_FK`) VALUES
+            (1,1);
+INSERT INTO `user_notification` (`id_user_FK`, `id_notification_FK`) VALUES
+            (2,2);

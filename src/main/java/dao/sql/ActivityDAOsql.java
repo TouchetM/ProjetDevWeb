@@ -80,16 +80,15 @@ public class ActivityDAOsql implements ActivityDAO {
     }
 
     @Override
-    public boolean exist(int id, int id_user, int id_location){
-        String sql = "SELECT * FROM activity where (id = ? and id_user = ? and id_location = ?)";
+    public boolean exist(String date, int id){
+        String sql = "SELECT * FROM activity where (date = ? and id = ?)";
         PreparedStatement pst = null;
         boolean exist = false;
         try {
             pst = factory.getConnexion().prepareStatement(sql);
 
             pst.setInt(1,id);
-            pst.setInt(2,id_user);
-            pst.setInt(3,id_location);
+            pst.setString(2,date);
 
             ResultSet result = pst.executeQuery();
 
@@ -106,7 +105,7 @@ public class ActivityDAOsql implements ActivityDAO {
 
     @Override
     public void createActivity(ActivityBean newActivity){
-        if(!exist(newActivity.getId(),newActivity.getId_user(),newActivity.getId_location()))
+        if(!exist(newActivity.getDate(),newActivity.getId()))
             try {
                 String sql = "INSERT INTO ACTIVITY (id,id_user,id_location) VALUES (?,?,?)";
                 PreparedStatement pst = factory.getConnexion().prepareStatement(sql);
