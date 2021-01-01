@@ -139,4 +139,15 @@ public class NotificationDAOsql implements NotificationDAO {
                 throwables.printStackTrace();
             }
     }
+
+    @Override
+    public void notifier(UserBean[] friends){
+        for(int i=0; i<friends.length;i++){
+            NotificationBean notif = new NotificationBean();
+            notif.setCheck(false);
+            notif.setMessage("Alerte: un de vos amis a déclaré être positif.");
+            createNotification(notif);
+        }
+    }
+
 }
