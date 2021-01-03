@@ -73,7 +73,7 @@ public class DemandeAmiForm {
         if ( valeur == null || valeur.trim().length() == 0 ) {
             return null;
         } else {
-            return valeur;
+            return valeur.trim();
         }
     }
     public String getResultat() {

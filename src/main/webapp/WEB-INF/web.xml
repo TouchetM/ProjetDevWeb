@@ -104,6 +104,16 @@
         <url-pattern>/refuseFriendRequest</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ModifyUserServlet</servlet-name>
+        <servlet-class>servlet.ModifyUserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ModifyUserServlet</servlet-name>
+        <url-pattern>/modifyMyProfile</url-pattern>
+    </servlet-mapping>
+
     <default-context-path>
         JSP_pages/index.jsp
     </default-context-path>

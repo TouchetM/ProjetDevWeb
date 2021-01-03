@@ -61,8 +61,10 @@ public class DAOFactorySQL {
                 Statement st = connexion.createStatement();
 
                 for (int i = 0; i < request.length; i++) {
-                    if(!request[i].equals(""))
-                    st.executeUpdate(request[i]);
+                    if(!request[i].equals("")){
+                        System.out.println("Executed: "+request[i]);
+                        st.executeUpdate(request[i]);
+                    }
                 }
             }
         }catch (IOException e) {

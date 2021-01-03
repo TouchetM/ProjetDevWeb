@@ -95,7 +95,7 @@ public class ConnexionForm {
         if ( valeur == null || valeur.trim().length() == 0 ) {
             return null;
         } else {
-            return valeur;
+            return valeur.trim();
         }
     }
 

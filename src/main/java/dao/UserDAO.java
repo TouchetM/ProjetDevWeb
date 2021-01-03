@@ -16,7 +16,7 @@ public interface UserDAO {
 
     public void save(UserBean user);
 
-    public void saveModification(String mail,UserBean user);
+    public void saveModification(UserBean user);
 
     public boolean exist(String mail);
 

@@ -155,8 +155,70 @@ public class UserDAOsql implements UserDAO {
 
 
     @Override
-    public void saveModification(String mail, UserBean user) {
+    public void saveModification(UserBean user) {
 
+        PreparedStatement pst = null;
+        try {
+            UserBean userBeforeChange = load(user.getId());
+            String sql;
+            //mail
+            if(!userBeforeChange.getMail().equals(user.getMail())){
+                sql = "UPDATE user " +
+                        "SET mail=? " +
+                        "WHERE id=?";
+                    pst = factory.getConnexion().prepareStatement(sql);
+                    pst.setString(1, user.getMail());
+                    pst.setInt(2,user.getId());
+
+                    pst.executeUpdate();
+            }
+            //lastname
+            if(!userBeforeChange.getLastName().equals(user.getLastName())){
+                sql = "UPDATE user " +
+                        "SET lastname=? " +
+                        "WHERE id=?";
+                pst = factory.getConnexion().prepareStatement(sql);
+                pst.setString(1, user.getLastName());
+                pst.setInt(2,user.getId());
+
+                pst.executeUpdate();
+            }
+            //password
+            if(!userBeforeChange.getPassword().equals(user.getPassword())){
+                sql = "UPDATE user " +
+                        "SET password=? " +
+                        "WHERE id=?";
+                pst = factory.getConnexion().prepareStatement(sql);
+                pst.setString(1, user.getPassword());
+                pst.setInt(2,user.getId());
+
+                pst.executeUpdate();
+            }
+            //firstname
+            if(!userBeforeChange.getFirstName().equals(user.getFirstName())){
+                sql = "UPDATE user " +
+                        "SET firstname=? " +
+                        "WHERE id=?";
+                pst = factory.getConnexion().prepareStatement(sql);
+                pst.setString(1, user.getFirstName());
+                pst.setInt(2,user.getId());
+
+                pst.executeUpdate();
+            }
+            //birthdate
+            if(!userBeforeChange.getBirthdate().equals(user.getBirthdate())){
+                sql = "UPDATE user " +
+                        "SET birthdate=? " +
+                        "WHERE id=?";
+                pst = factory.getConnexion().prepareStatement(sql);
+                pst.setString(1, user.getBirthdate());
+                pst.setInt(2,user.getId());
+
+                pst.executeUpdate();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -172,6 +234,8 @@ public class UserDAOsql implements UserDAO {
 
             if(result.next())
                 exist = true;
+
+            result.close();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

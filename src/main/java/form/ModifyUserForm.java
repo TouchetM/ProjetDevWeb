@@ -1,5 +1,6 @@
 package form;
 
+
 import bean.UserBean;
 import dao.UserDAO;
 
@@ -7,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /** @author - Maxime Choné **/
 
-public class EnregistrementForm {
+public class ModifyUserForm {
+
 
     private static final String CHAMP_EMAIL = "email";
     private static final String CHAMP_PASS  = "password";
@@ -23,12 +24,13 @@ public class EnregistrementForm {
     private Map<String, String> erreurs = new HashMap<String, String>();
 
     private UserDAO userDAOo;
+    private UserBean current_user;
 
-    public EnregistrementForm(UserDAO userDAO){
+    public ModifyUserForm(UserDAO userDAO){
         this.userDAOo = userDAO;
     }
 
-    public void creerCompteUtilisateur(HttpServletRequest request){
+    public void modifyUser(HttpServletRequest request){
         String email = getValeurChamp(request,CHAMP_EMAIL);
         String password = getValeurChamp(request,CHAMP_PASS);
         String confirmation = getValeurChamp(request, CHAMP_CONF);
@@ -36,31 +38,36 @@ public class EnregistrementForm {
         String firstname = getValeurChamp(request,CHAMP_FISTNAME);
         String birthdate = getValeurChamp(request,CHAMP_BIRTH);
 
+        current_user = (UserBean)request.getSession().getAttribute("current_user");
+
         traiterEmail(email);
-        traiterPassword(password,confirmation);
         traiterName(name,firstname);
+        traiterPassword(password,confirmation);
 
         if(erreurs.isEmpty()){
             UserBean user = new UserBean();
 
+            user.setId(current_user.getId());
             user.setMail(email);
-            user.setLastName(name);
+            if(password == null)
+                user.setPassword(current_user.getPassword());
+            else
+                user.setPassword(password);
             user.setFirstName(firstname);
-            user.setPassword(password);
-            if(birthdate == null)
-                birthdate = "";
+            user.setLastName(name);
             user.setBirthdate(birthdate);
 
-            userDAOo.save(user);
-            resultat = "Enregistrement réussi !";
-            request.setAttribute("erreur_register",null);
+            userDAOo.saveModification(user);
+            resultat = "Modification réussie !";
+            request.setAttribute("erreur_modifyUser",null);
+
+            request.getSession().setAttribute("current_user",userDAOo.load(current_user.getId()));
 
         } else {
-            resultat = "L'enregistrement a échoué!";
-            request.setAttribute("erreur_register",erreurs);
+            resultat = "La modification a échoué!";
+            request.setAttribute("erreur_modifyUser",erreurs);
         }
     }
-
 
     private void traiterEmail(String email){
         try {
@@ -108,8 +115,6 @@ public class EnregistrementForm {
             } else if(!password.equals(confirmation)){
                 throw new FormValidationException("Les mots de passe saisis ne correspondent pas.");
             }
-        } else {
-            throw new FormValidationException("Merci de saisir un mot de passe.");
         }
     }
 
@@ -118,7 +123,8 @@ public class EnregistrementForm {
             throw new FormValidationException("Merci de saisir une adresse mail.");
         }
         if(userDAOo.exist(email)){
-            throw new FormValidationException("Cette email est déjà utilisée.");
+            if(userDAOo.load(email).getId() != current_user.getId())
+                throw new FormValidationException("Cette email est déjà utilisée.");
         }
     }
 
@@ -142,4 +148,5 @@ public class EnregistrementForm {
             return valeur.trim();
         }
     }
+
 }
