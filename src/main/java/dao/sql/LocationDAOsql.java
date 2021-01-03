@@ -110,4 +110,27 @@ public class LocationDAOsql implements LocationDAO {
             }
     }
 
+    @Override
+    public int getId(String adresse){
+        String sql = "SELECT id FROM location WHERE address = ?;";
+        PreparedStatement pst = null;
+        LocationBean location = new LocationBean();
+        location.setId(-1);
+        try {
+            pst = factory.getConnexion().prepareStatement(sql);
+
+            pst.setString(1,adresse);
+
+            ResultSet result = pst.executeQuery();
+
+            if(result.next()){
+                return result.getInt("id");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return -1;
+    }
+
 }

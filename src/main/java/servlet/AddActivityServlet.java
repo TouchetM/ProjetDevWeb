@@ -14,7 +14,8 @@ public class AddActivityServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        NewActivityForm activityForm= new NewActivityForm(DAOFactorySQL.getInstance().getActivityDAO());
+        NewActivityForm activityForm= new NewActivityForm(DAOFactorySQL.getInstance().getActivityDAO(),
+                                                            DAOFactorySQL.getInstance().getLocationDAO());
         activityForm.addActivity(request);
 
         String path = "/newActivity.jsp";

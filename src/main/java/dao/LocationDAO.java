@@ -8,4 +8,5 @@ public interface LocationDAO {
     LocationBean[] loadAll();
     void createLocation(LocationBean location);
     boolean exist(String name, String address);
+    int getId(String adresse);
 }
