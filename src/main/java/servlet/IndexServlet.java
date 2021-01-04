@@ -12,7 +12,6 @@ import java.io.IOException;
 public class IndexServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-
         String path;
         path = "/index.jsp";
         request.getRequestDispatcher(path).forward(request,response);
@@ -20,7 +19,6 @@ public class IndexServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-
         String path;
         path = "/index.jsp";
         request.getRequestDispatcher(path).forward(request,response);

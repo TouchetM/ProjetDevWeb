@@ -2,8 +2,7 @@
 <%@ page import="bean.UserBean" %>
 <%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% UserBean current_user = (UserBean)request.getSession().getAttribute("current_user");
-%>
+<% UserBean current_user = (UserBean)request.getSession().getAttribute("current_user");%>
 <!DOCTYPE html>
 <html lang="en">
 

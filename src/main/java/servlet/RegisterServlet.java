@@ -25,10 +25,12 @@ public class RegisterServlet extends HttpServlet {
         String path;
         if(enregistrementForm.getResultat().equals("Enregistrement réussi !")){
             path = "/login";
+            response.sendRedirect(request.getContextPath() + path);
         } else {
             path = "/register.jsp";
+            request.getRequestDispatcher(path).forward(request,response);
         }
-        request.getRequestDispatcher(path).forward(request,response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

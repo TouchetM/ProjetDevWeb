@@ -22,7 +22,7 @@ public class CreateFriendRequestServlet extends HttpServlet {
 
 
         UserBean current_user = (UserBean)request.getSession().getAttribute("current_user");
-        String path = "/friends.jsp";
+        String path = "/myFriends.jsp";
 
         if(current_user != null) {
 
@@ -36,6 +36,9 @@ public class CreateFriendRequestServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+        String path = "/myFriends.jsp";
+
+        response.sendRedirect(request.getContextPath() + path);
 
     }
 }

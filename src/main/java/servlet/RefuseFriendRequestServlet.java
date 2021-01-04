@@ -24,7 +24,7 @@ public class RefuseFriendRequestServlet extends HttpServlet {
         FriendDAO friendDAO = DAOFactorySQL.getInstance().getFriendRequestDAO();
 
         UserBean current_user = (UserBean) request.getSession().getAttribute("current_user");
-        String path = "/friends.jsp";
+        String path = "/myFriends.jsp";
 
 
         if(current_user != null){
@@ -45,6 +45,7 @@ public class RefuseFriendRequestServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String path = "/myFriends.jsp";
+        response.sendRedirect(request.getContextPath() + path);
     }
 }

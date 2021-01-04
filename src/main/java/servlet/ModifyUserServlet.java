@@ -29,6 +29,18 @@ public class ModifyUserServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        request.setCharacterEncoding("UTF-8");
+        UserBean current_user = (UserBean)request.getSession().getAttribute("current_user");
+        String path;
 
+
+        if(current_user != null){
+            path = "/myProfile.jsp";
+            request.getRequestDispatcher(path).forward(request,response);
+        } else {
+            path = "/index";
+            response.sendRedirect(request.getContextPath() + path);
+        }
     }
 }

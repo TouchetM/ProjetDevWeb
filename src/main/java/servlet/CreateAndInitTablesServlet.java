@@ -14,7 +14,9 @@ import java.io.IOException;
 public class CreateAndInitTablesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
+        String path = "/index.jsp";
 
+        response.sendRedirect(request.getContextPath() + path);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,6 +34,6 @@ public class CreateAndInitTablesServlet extends HttpServlet {
                 request.getSession().setAttribute("current_user",null);
             }
         }
-        request.getRequestDispatcher(path).forward(request,response);
+        response.sendRedirect(request.getContextPath() + path);
     }
 }

@@ -27,7 +27,8 @@ public class LogoutServlet extends HttpServlet {
 
         String path;
         path = "/index";
-        request.getRequestDispatcher(path).forward(request,response);
+        response.sendRedirect(request.getContextPath() + path);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +42,9 @@ public class LogoutServlet extends HttpServlet {
 
         String path;
         path = "/index";
-        request.getRequestDispatcher(path).forward(request,response);
+
+        response.sendRedirect(request.getContextPath() + path);
+
 
     }
 }

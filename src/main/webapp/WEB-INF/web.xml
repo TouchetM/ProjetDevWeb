@@ -114,9 +114,26 @@
         <url-pattern>/modifyMyProfile</url-pattern>
     </servlet-mapping>
 
-    <default-context-path>
-        JSP_pages/index.jsp
-    </default-context-path>
+    <servlet>
+        <servlet-name>myProfileServlet</servlet-name>
+        <servlet-class>servlet.myProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>myProfileServlet</servlet-name>
+        <url-pattern>/myProfile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>myFriendsServlet</servlet-name>
+        <servlet-class>servlet.myFriendsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>myFriendsServlet</servlet-name>
+        <url-pattern>/myFriends</url-pattern>
+    </servlet-mapping>
+
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
