@@ -78,7 +78,7 @@ public class NotificationDAOsql implements NotificationDAO {
 
         try {
             String sql ="SELECT id_notification_FK from user_notification where " +
-                    "id_user_FK = ?";
+                    "id_user_FK = ?;";
 
             PreparedStatement pst = factory.getConnexion().prepareStatement(sql);
 
@@ -102,7 +102,7 @@ public class NotificationDAOsql implements NotificationDAO {
 
     @Override
     public boolean exist(int id){
-        String sql = "SELECT * FROM notification where id = ?";
+        String sql = "SELECT * FROM notification where id = ?;";
         PreparedStatement pst = null;
         boolean exist = false;
         try {
@@ -127,7 +127,7 @@ public class NotificationDAOsql implements NotificationDAO {
     public void createNotification(NotificationBean newNotification){
         if(!exist(newNotification.getId()))
             try {
-                String sql = "INSERT INTO NOTIFICATION (id,message,check) VALUES (?,?,?)";
+                String sql = "INSERT INTO NOTIFICATION (id,message,check) VALUES (?,?,?);";
                 PreparedStatement pst = factory.getConnexion().prepareStatement(sql);
 
                 pst.setInt(1,newNotification.getId());

@@ -18,13 +18,12 @@ public class LocationDAOsql implements LocationDAO {
     }
 
     @Override
-    public LocationBean loadLocation(int id){
-        String sql = "SELECT * FROM location WHERE id = ?;";
+    public LocationBean load(int id){
         PreparedStatement pst = null;
         LocationBean location = new LocationBean();
         location.setId(-1);
         try {
-            pst = factory.getConnexion().prepareStatement(sql);
+            pst = factory.getConnexion().prepareStatement("SELECT * FROM location WHERE id = ?;");
 
             pst.setInt(1,id);
 
@@ -32,6 +31,8 @@ public class LocationDAOsql implements LocationDAO {
 
             if(result.next()){
                 location.setId(result.getInt("id"));
+                location.setName(result.getString("name"));
+                location.setAddress(result.getString("address"));
             }
 
         } catch (SQLException throwables) {
@@ -71,7 +72,7 @@ public class LocationDAOsql implements LocationDAO {
 
     @Override
     public boolean exist(String name, String address){
-        String sql = "SELECT * FROM location where ('name' = ? and address = ?)";
+        String sql = "SELECT * FROM location where ('name' = ? and address = ?);";
         PreparedStatement pst = null;
         boolean exist = false;
         try {
@@ -97,7 +98,7 @@ public class LocationDAOsql implements LocationDAO {
     public void createLocation(LocationBean newLocation){
         if(!exist(newLocation.getName(),newLocation.getAddress()))
             try {
-                String sql = "INSERT INTO LOCATION (id,name,address) VALUES (?,?,?)";
+                String sql = "INSERT INTO LOCATION (id,name,address) VALUES (?,?,?);";
                 PreparedStatement pst = factory.getConnexion().prepareStatement(sql);
 
                 pst.setInt(1,newLocation.getId());

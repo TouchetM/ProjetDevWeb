@@ -15,8 +15,7 @@ CREATE TABLE `user` (
   `role` varchar(1024) NOT NULL DEFAULT 'basic_user'
 );
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `mail` (`mail`);
+  ADD PRIMARY KEY (`id`);
 ALTER TABLE `user`
 MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 INSERT INTO `user` (`mail`, `password`, `firstname`, `lastname`, `birthdate`, `role`) VALUES
@@ -44,13 +43,12 @@ CREATE TABLE `location` (
     `address` varchar(1024) NOT NULL
 );
 ALTER TABLE `location`
-    ADD PRIMARY KEY (`id`),
-    ADD UNIQUE KEY `address` (`address`);
+    ADD PRIMARY KEY (`id`);
 ALTER TABLE `location`
 MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
-INSERT INTO `id` (`name`,`address`) VALUES
+INSERT INTO `location` (`name`,`address`) VALUES
 ('location1','address1');
-INSERT INTO `id` (`name`,`address`) VALUES
+INSERT INTO `location` (`name`,`address`) VALUES
 ('location2','address2');
 
 CREATE TABLE `activity` (

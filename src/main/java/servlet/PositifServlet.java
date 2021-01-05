@@ -22,13 +22,13 @@ public class PositifServlet extends HttpServlet {
             DAOFactorySQL.getInstance().getNotificationDAO().notifier(friends);
         }
 
-        String path = "/index.jsp";
+        String path = "/positif.jsp";
         request.getRequestDispatcher(path).forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        String path = "/index.jsp";
+        String path = "/positif.jsp";
         request.getRequestDispatcher(path).forward(request,response);
     }
 }

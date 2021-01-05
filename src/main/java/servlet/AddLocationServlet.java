@@ -17,13 +17,13 @@ public class AddLocationServlet extends HttpServlet {
         NewLocationForm locationForm= new NewLocationForm(DAOFactorySQL.getInstance().getLocationDAO());
         locationForm.addLocation(request);
 
-        String path = "/newActivity.jsp";
+        String path = "/location.jsp";
         request.getRequestDispatcher(path).forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-        String path = "/newActivity.jsp";
+        String path = "/location.jsp";
         request.getRequestDispatcher(path).forward(request,response);
     }
 }

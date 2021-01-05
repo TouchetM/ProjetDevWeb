@@ -1,6 +1,7 @@
 package dao.sql;
 
 import bean.ActivityBean;
+import bean.UserBean;
 import dao.ActivityDAO;
 
 import java.sql.PreparedStatement;
@@ -18,19 +19,15 @@ public class ActivityDAOsql implements ActivityDAO {
     }
 
     @Override
-    public ActivityBean loadActivity(int id, int id_user, int id_location){
-        String sql = "SELECT * FROM activity WHERE id = ? and id_user = ? and id_location = ?;";
+    public ActivityBean load(int id){
+        String sql = "SELECT * FROM activity WHERE id = ?;";
         PreparedStatement pst = null;
         ActivityBean activity = new ActivityBean();
         activity.setId(-1);
-        activity.setId_user(-1);
-        activity.setId_user(-1);
         try {
             pst = factory.getConnexion().prepareStatement(sql);
 
             pst.setInt(1,id);
-            pst.setInt(2,id_user);
-            pst.setInt(3,id_location);
 
             ResultSet result = pst.executeQuery();
 
@@ -38,6 +35,11 @@ public class ActivityDAOsql implements ActivityDAO {
                 activity.setId(result.getInt("id"));
                 activity.setId_user(result.getInt("id_user"));
                 activity.setId_location(result.getInt("id_location"));
+                activity.setName(result.getString("name"));
+                activity.setDate(result.getString("date"));
+                activity.setEnd_at(result.getString("end_at"));
+                activity.setStart_at(result.getString("start_at"));
+
             }
 
         } catch (SQLException throwables) {
@@ -48,24 +50,23 @@ public class ActivityDAOsql implements ActivityDAO {
     }
 
     @Override
-    public ActivityBean[] loadAll(int id) {
+    public ActivityBean[] loadAll(UserBean user) {
 
         ArrayList<ActivityBean> activityList = new ArrayList<>();
 
         try {
-            Statement st = factory.getConnexion().createStatement();
-            ResultSet result = st.executeQuery("SELECT * FROM ACTIVITY WHERE id_user = id;");
+            String sql ="SELECT id from activity where " +
+                    "id_user_FK = ?;";
+            PreparedStatement pst = factory.getConnexion().prepareStatement(sql);
+
+            pst.setInt(1,user.getId());
+
+            ResultSet result = pst.executeQuery();
 
             ActivityBean activity = null;
             while (result.next()){
-                activity = new ActivityBean();
-                activity.setId(result.getInt("id"));
-                activity.setId_user(result.getInt("id_user"));
-                activity.setId_location(result.getInt("id_location"));
-                activity.setName(result.getString("name"));
-                activity.setDate(result.getString("date"));
-                activity.setStart_at(result.getString("start_at"));
-                activity.setEnd_at(result.getString("end_at"));
+                activity = load(result.getInt("id"));
+                activityList.add(activity);
 
             }
             result.close();
@@ -81,7 +82,7 @@ public class ActivityDAOsql implements ActivityDAO {
 
     @Override
     public boolean exist(String date, int id){
-        String sql = "SELECT * FROM activity where (date = ? and id = ?)";
+        String sql = "SELECT * FROM activity where (date = ? and id = ?);";
         PreparedStatement pst = null;
         boolean exist = false;
         try {
@@ -107,7 +108,7 @@ public class ActivityDAOsql implements ActivityDAO {
     public void createActivity(ActivityBean newActivity){
         if(!exist(newActivity.getDate(),newActivity.getId()))
             try {
-                String sql = "INSERT INTO ACTIVITY (id,id_user,id_location) VALUES (?,?,?)";
+                String sql = "INSERT INTO ACTIVITY (id,id_user,id_location) VALUES (?,?,?);";
                 PreparedStatement pst = factory.getConnexion().prepareStatement(sql);
 
                 pst.setInt(1,newActivity.getId());
