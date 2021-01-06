@@ -17,21 +17,14 @@ import java.util.Arrays;
 
 public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-
-        HttpSession session = request.getSession();
-
-
-
-        session.setAttribute("current_user",null);
-
-        String path;
-        path = "/index";
-        response.sendRedirect(request.getContextPath() + path);
-
+    handleRequest(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        handleRequest(request,response);
+    }
+
+    private void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
         HttpSession session = request.getSession();

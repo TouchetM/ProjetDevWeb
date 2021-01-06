@@ -134,6 +134,36 @@
         <url-pattern>/myFriends</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AdminModifyUserServlet</servlet-name>
+        <servlet-class>servlet.AdminModifyUserServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminModifyUserServlet</servlet-name>
+        <url-pattern>/adminModifyUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminUserProfileServlet</servlet-name>
+        <servlet-class>servlet.AdminUserProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminUserProfileServlet</servlet-name>
+        <url-pattern>/adminUserProfile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AdminUsersServlet</servlet-name>
+        <servlet-class>servlet.AdminUsersServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminUsersServlet</servlet-name>
+        <url-pattern>/adminUsers</url-pattern>
+    </servlet-mapping>
+
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
