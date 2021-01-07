@@ -245,6 +245,26 @@ public class UserDAOsql implements UserDAO {
     }
 
     @Override
+    public void delete(UserBean user) {
+        PreparedStatement pst = null;
+        if(user != null) {
+            if (user.getId() != -1) {
+                try {
+                    String sql = "DELETE FROM USER where id=?";
+                    pst = factory.getConnexion().prepareStatement(sql);
+                    pst.setInt(1, user.getId());
+
+                    pst.executeUpdate();
+
+                    pst.close();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
     public UserBean[] friendList(UserBean user) {
         ArrayList<UserBean> friendList = new ArrayList<>();
 

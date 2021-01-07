@@ -22,6 +22,8 @@ public class DAOFactorySQL {
     public synchronized static DAOFactorySQL getInstance() {
         if(instance == null)
             instance = new DAOFactorySQL();
+        if(instance.connexion == null)
+            instance.connect();
         return instance;
     }
 

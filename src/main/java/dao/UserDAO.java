@@ -20,6 +20,10 @@ public interface UserDAO {
 
     public boolean exist(String mail);
 
+    public void delete(UserBean user);
+
+
+
     /**
      *
      * @param user

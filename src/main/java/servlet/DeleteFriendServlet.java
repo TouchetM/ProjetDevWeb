@@ -29,7 +29,6 @@ public class DeleteFriendServlet extends HttpServlet {
 
 
         if(current_user != null){
-            System.out.println(request.getParameter("id_user_to_delete"));
             if(request.getParameter("id_user_to_delete") != null) {
 
                 UserBean friendToDelete = (UserBean) userDAO.load(Integer.parseInt(request.getParameter("id_user_to_delete")));

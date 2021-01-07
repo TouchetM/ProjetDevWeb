@@ -2,6 +2,7 @@
 <%@ page import="bean.UserBean" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="dao.sql.DAOFactorySQL" %>
+<%@ page import="htmlWriter.htmlWriterAdminUser" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     UserBean user = null;
@@ -328,7 +329,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
+                                <a href="adminUsers" class="btn btn-outline-light btn-icon-split">
+                                            <span class="icon text-gray-600">
+                                                <i class="fas fa-arrow-left"></i>
+                                            </span>
+                                    <span class="text">Retour</span>
+                                </a>
+                            </div>
+                            <div class="col-sm-3">
                                 <button href="adminUserProfile?id_user=<%out.print(id);%>" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-times"></i>
@@ -336,13 +345,21 @@
                                     <span class="text">Annuler les changements</span>
                                 </button>
                             </div>
-                            <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="col-sm-4 mb-3 mb-sm-0">
                                 <button type="submit" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-check"></i>
                                         </span>
                                     <span class="text">Sauvegarder les changements</span>
                                 </button>
+                            </div>
+                            <div class="col-sm-3 mb-3 mb-sm-0">
+                                <a type="submit" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#deleteAccountModal">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-times"></i>
+                                        </span>
+                                    <span class="text">Supprimer le compte</span>
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -376,6 +393,11 @@
     <!-- Logout Modal-->
     <%
         out.print(htmlWriterNavBar.getLogoutModal());
+    %>
+
+    <!-- delete Modal-->
+    <%
+        out.print(htmlWriterAdminUser.getDeleteAccountModal(request));
     %>
 
     <!-- Bootstrap core JavaScript-->

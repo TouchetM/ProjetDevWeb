@@ -51,7 +51,6 @@ public class htmlWriterAdminUser {
                     sb.append("</td>");
 
                     sb.append("</tr>");
-                    System.out.println(sb);
                 }
                 html += sb.toString();
                 html +=
@@ -61,29 +60,28 @@ public class htmlWriterAdminUser {
                 return html;
     }
 
-    public static String getTest(){
+    public static String getDeleteAccountModal(HttpServletRequest request){
+        String logoutModal = "<!-- Delete account Modal-->"+
+                "    <div class=\"modal fade\" id=\"deleteAccountModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleLabel\""+
+                "        aria-hidden=\"true\">"+
+                "        <div class=\"modal-dialog\" role=\"document\">"+
+                "            <div class=\"modal-content\">"+
+                "                <div class=\"modal-header\">"+
+                "                    <h5 class=\"modal-title\" id=\"deleteLabel\">Êtes vous sûr de vouloir supprimer ce compte ?</h5>"+
+                "                    <button class=\"close\" type=\"button\" data-dismiss=\"modal\" aria-label=\"Close\">"+
+                "                        <span aria-hidden=\"true\">×</span>"+
+                "                    </button>"+
+                "                </div>"+
+                "                <div class=\"modal-body\">Appuyez sur \"Oui\" pour supprimer définitivement ce compte.</div>"+
+                "                <div class=\"modal-footer\">"+
+                "                    <button class=\"btn btn-secondary\" type=\"button\" data-dismiss=\"modal\">Non</button>"+
+                "                    <a class=\"btn btn-primary\" href=\"adminDeleteUser?id_user="+ request.getParameter("id_user")+"\">Oui</a>"+
+                "                </div>"+
+                "            </div>"+
+                "        </div>"+
+                "    </div>";
 
-        String myvar = "<div class=\"table-responsive\">"+
-                "                                <table class=\"table table-bordered\" id=\"dataTable\" width=\"100%\" cellspacing=\"0\">"+
-                "                                    <thead>"+
-                "                                        <tr>"+
-                "                                            <th>Name</th>"+
-                "                                            <th>Position</th>"+
-                "                                            <th>Office</th>"+
-                "                                            <th>Age</th>"+
-                "                                            <th>Start date</th>"+
-                "                                            <th>Salary</th>"+
-                "                                        </tr>"+
-                "                                    </thead>"+
-                "                                    <tbody>"+
-                "                                        <tr>"+
-                "                                            <td>Tiger Nixon</td><td>System Architect</td><td>Edinburgh</td><td>61</td><td>2011/04/25</td><td>$320,800</td>"+
-                "                                        </tr>"+
-                "                                    </tbody>"+
-                "                                </table>"+
-                "                            </div>";
-
-            return myvar;
+        return logoutModal;
     }
 
 }

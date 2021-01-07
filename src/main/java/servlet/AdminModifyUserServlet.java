@@ -47,7 +47,6 @@ public class AdminModifyUserServlet extends HttpServlet {
 
         if (current_user != null && id_user != null) {
             if (current_user.getRole().equals("admin")) {
-                System.out.println("modify:"+id_user.trim());
                 int id = Integer.parseInt(id_user.trim());
                 path = "adminUserProfile?id_user="+id;
                 response.sendRedirect(path);

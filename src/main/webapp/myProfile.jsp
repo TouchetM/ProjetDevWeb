@@ -1,6 +1,7 @@
 <%@ page import="htmlWriter.htmlWriterNavBar" %>
 <%@ page import="bean.UserBean" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="htmlWriter.htmlWriterUser" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% UserBean current_user = (UserBean)request.getSession().getAttribute("current_user");%>
 <!DOCTYPE html>
@@ -324,7 +325,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <button href="myProfile.jsp" class="btn btn-secondary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-times"></i>
@@ -332,13 +333,21 @@
                                     <span class="text">Annuler les changements</span>
                                 </button>
                             </div>
-                            <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="col-sm-4 mb-3 mb-sm-0">
                                 <button type="submit" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-check"></i>
                                         </span>
                                     <span class="text">Sauvegarder les changements</span>
                                 </button>
+                            </div>
+                            <div class="col-sm-3 mb-3 mb-sm-0">
+                                <a type="submit" class="btn btn-danger btn-icon-split" data-toggle="modal" data-target="#deleteAccountModal">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-times"></i>
+                                        </span>
+                                    <span class="text">Supprimer le compte</span>
+                                </a>
                             </div>
                         </div>
                     </form>
@@ -374,6 +383,9 @@
         out.print(htmlWriterNavBar.getLogoutModal());
     %>
 
+    <%
+        out.print(htmlWriterUser.getDeleteAccountModal());
+    %>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
