@@ -82,20 +82,11 @@ public class htmlWriterNavBar {
                     "                                aria-labelledby=\"userDropdown\">" +
                     "                                <a class=\"dropdown-item\" href=\"myProfile\">" +
                     "                                    <i class=\"fas fa-user fa-sm fa-fw mr-2 text-gray-400\"></i>" +
-                    "                                    Profile" +
-                    "                                </a>" +
-                    "                                <a class=\"dropdown-item\" href=\"#\">" +
-                    "                                    <i class=\"fas fa-cogs fa-sm fa-fw mr-2 text-gray-400\"></i>" +
-                    "                                    Settings" +
-                    "                                </a>" +
-                    "                                <a class=\"dropdown-item\" href=\"#\">" +
-                    "                                    <i class=\"fas fa-list fa-sm fa-fw mr-2 text-gray-400\"></i>" +
-                    "                                    Activity Log" +
-                    "                                </a>" +
+                    "                                    Mon compte" +
                     "                                <div class=\"dropdown-divider\"></div>" +
                     "                                <a class=\"dropdown-item\" href=\"logout\" data-toggle=\"modal\" data-target=\"#logoutModal\">" +
                     "                                    <i class=\"fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400\"></i>" +
-                    "                                    Logout" +
+                    "                                    Déconnexion" +
                     "                                </a>" +
                     "                            </div>" +
                     "                        </li>";
@@ -111,6 +102,109 @@ public class htmlWriterNavBar {
             retour = connexionEtEnregitrement;
         }
         return retour;
+    }
+
+    public static String getSideBar(HttpServletRequest request){
+
+        UserBean current_user = (UserBean) request.getSession().getAttribute("current_user");
+
+        String sideBar = "<!-- Sidebar -->"+
+                "        <ul class=\"navbar-nav bg-gradient-primary sidebar sidebar-dark accordion\" id=\"accordionSidebar\">"+
+                ""+
+                "            <!-- Sidebar - Brand -->"+
+                "            <a class=\"sidebar-brand d-flex align-items-center justify-content-center\" href=\"index.jsp\">"+
+                "                <div class=\"sidebar-brand-icon rotate-n-15\">"+
+                "                    <i class=\"fas fa-viruses\"></i>"+
+                "                </div>"+
+                "                <div class=\"sidebar-brand-text mx-3\">Covid ou pas</div>"+
+                "            </a>"+
+                ""+
+                "            <!-- Divider -->"+
+                "            <hr class=\"sidebar-divider my-0\">"+
+                ""+
+                "            <!-- Nav Item - Accueil -->"+
+                "            <li class=\"nav-item active\">"+
+                "                <a class=\"nav-link\" href=\"index.jsp\">"+
+                "                    <i class=\"fas fa-fw fa-tachometer-alt\"></i>"+
+                "                    <span>Accueil</span></a>"+
+                "            </li>"+
+                ""+
+                "            <!-- Divider -->"+
+                "            <hr class=\"sidebar-divider\">"+
+                ""+
+                "            <!-- Heading -->"+
+                "            <div class=\"sidebar-heading\">"+
+                "                Utilisateur"+
+                "            </div>"+
+                ""+
+                "            <!-- Nav Item - add activity -->"+
+                "            <li class=\"nav-item\">"+
+                "                <a class=\"nav-link\" href=\"#\">"+
+                "                    <i class=\"fas fa-fw fa-plus\"></i>"+
+                "                    <span>Ajouter une activités</span></a>"+
+                "            </li>"+
+                ""+
+                "            <!-- Nav Item - my activities -->"+
+                "            <li class=\"nav-item\">"+
+                "                <a class=\"nav-link\" href=\"#\">"+
+                "                    <i class=\"fas fa-fw fa-running\"></i>"+
+                "                    <span>Mes activités</span></a>"+
+                "            </li>"+
+                ""+
+                "            <!-- Nav Item - friends -->"+
+                "            <li class=\"nav-item\">"+
+                "                <a class=\"nav-link\" href=\"myFriends\">"+
+                "                    <i class=\"fas fa-fw fa-user-friends\"></i>"+
+                "                    <span>Mes amis</span></a>"+
+                "            </li>"+
+                ""+
+                "            <!-- Divider -->"+
+                "            <hr class=\"sidebar-divider\">";
+        if(current_user != null){
+            if(current_user.getRole().equals("admin")){
+                sideBar +=                 "            <!-- Heading -->"+
+                        "            <div class=\"sidebar-heading\">"+
+                        "                Admin"+
+                        "            </div>"+
+                        ""+
+                        "            <!-- Nav Item - Tables utilisateur-->"+
+                        "            <li class=\"nav-item\">"+
+                        "                <a class=\"nav-link\" href=\"adminUsers\">"+
+                        "                    <i class=\"fas fa-fw fa-chart-area\"></i>"+
+                        "                    <span>Utilisateurs</span></a>"+
+                        "            </li>"+
+                        ""+
+                        "            <!-- Nav Item - Tables activités -->"+
+                        "            <li class=\"nav-item\">"+
+                        "                <a class=\"nav-link\" href=\"#\">"+
+                        "                    <i class=\"fas fa-fw fa-table\"></i>"+
+                        "                    <span>Activités</span></a>"+
+                        "            </li>"+
+                        ""+
+                        "            <!-- Nav Item - Tables lieux-->"+
+                        "            <li class=\"nav-item\">"+
+                        "                <a class=\"nav-link\" href=\"#\">"+
+                        "                    <i class=\"fas fa-fw fa-table\"></i>"+
+                        "                    <span>Lieux</span></a>"+
+                        "            </li>"+
+                        "";
+            }
+        }
+        sideBar +=
+                "            <!-- Divider -->"+
+                "            <hr class=\"sidebar-divider d-none d-md-block\">"+
+                ""+
+                "            <!-- Sidebar Toggler (Sidebar) -->"+
+                "            <div class=\"text-center d-none d-md-inline\">"+
+                "                <button class=\"rounded-circle border-0\" id=\"sidebarToggle\"></button>"+
+                "            </div>"+
+                ""+
+                "        </ul>"+
+                "        <!-- End of Sidebar -->";
+
+
+
+        return sideBar;
     }
 
     public static String getLogoutModal(){
