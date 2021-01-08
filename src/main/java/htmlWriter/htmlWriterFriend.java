@@ -5,6 +5,8 @@ import dao.sql.DAOFactorySQL;
 
 import javax.servlet.http.HttpServletRequest;
 
+/** @author - Maxime Choné **/
+
 public class htmlWriterFriend {
 
     public static String getFriends(HttpServletRequest request){

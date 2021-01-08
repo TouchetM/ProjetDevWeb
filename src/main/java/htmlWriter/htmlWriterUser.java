@@ -2,6 +2,8 @@ package htmlWriter;
 
 import javax.servlet.http.HttpServletRequest;
 
+/** @author - Maxime Choné **/
+
 public class htmlWriterUser {
 
     public static String getDeleteAccountModal(){

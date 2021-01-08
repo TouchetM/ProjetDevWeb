@@ -1,5 +1,7 @@
 package bean;
 
+/** @author - Maxime Choné **/
+
 public class FriendBean {
 
     private int id_from;

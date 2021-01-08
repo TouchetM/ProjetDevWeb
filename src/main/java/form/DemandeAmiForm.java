@@ -7,6 +7,8 @@ import dao.UserDAO;
 
 import javax.servlet.http.HttpServletRequest;
 
+/** @author - Maxime Choné **/
+
 public class DemandeAmiForm {
 
     private static final String CHAMP_EMAIL = "email";

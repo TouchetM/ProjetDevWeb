@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/** @author - Maxime Choné **/
+
 public class AdminModifyUserForm {
 
     private static final String CHAMP_EMAIL = "email";

@@ -2,6 +2,8 @@ package htmlWriter;
 
 import bean.UserBean;
 
+/** @author - Maxime Choné **/
+
 import javax.servlet.http.HttpServletRequest;
 
 public class htmlWriterNavBar {
