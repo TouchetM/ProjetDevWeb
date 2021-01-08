@@ -16,10 +16,17 @@ ALTER TABLE `user`
   ADD UNIQUE KEY `mail` (`mail`);
 ALTER TABLE `user`
 MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+INSERT INTO `user` (`mail`, `password`, `firstname`, `lastname`, `birthdate`,`role`) VALUES
+('emmanuel.macron@gouv.fr', '123', 'Emmanuel', 'Macron', '1977-12-21','admin');
 INSERT INTO `user` (`mail`, `password`, `firstname`, `lastname`, `birthdate`, `role`) VALUES
-('test1@test1', '123', 'cc', 'aa', '2020-12-01', 'admin');
+('jean.castex@gouv.fr', '123', 'Jean', 'Caster', '1965-06-25', 'admin');
 INSERT INTO `user` (`mail`, `password`, `firstname`, `lastname`, `birthdate`) VALUES
-('test2@test2', '123', 'kk', 'ii', '2020-12-01');
+('elisabeth.moreno@gouv.fr', '123', 'Elisabeth', 'Moreno', '1970-09-20');
+INSERT INTO `user` (`mail`, `password`, `firstname`, `lastname`, `birthdate`) VALUES
+('gerald.darmanin@gouv.fr', '123', 'Gérald', 'Darmanin', '1982-10-11');
+INSERT INTO `user` (`mail`, `password`, `firstname`, `lastname`, `birthdate`) VALUES
+('jeanmichel.blanquer@gouv.fr', '123', 'Jean-Michel', 'Blanquer', '1964-12-04');
+
 
 CREATE TABLE `friend` (
   `id_user_1` int(6) NOT NULL,
@@ -34,3 +41,11 @@ ALTER TABLE `friend`
   ADD CONSTRAINT `FK2` FOREIGN KEY (`id_user_2`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 INSERT INTO `friend` (`id_user_1`, `id_user_2`) VALUES
 (1, 2);
+INSERT INTO `friend` (`id_user_1`, `id_user_2`) VALUES
+(1, 3);
+INSERT INTO `friend` (`id_user_1`, `id_user_2`) VALUES
+(1, 4);
+INSERT INTO `friend` (`id_user_1`, `id_user_2`) VALUES
+(2, 4);
+INSERT INTO `friend` (`id_user_1`, `id_user_2`) VALUES
+(4, 3);
